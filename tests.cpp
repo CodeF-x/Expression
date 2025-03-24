@@ -34,7 +34,7 @@ void test_additing_subtracting() {
     print_standart<rational>(Expression<rational>(-1) - Expression<rational>(20), {}, -1 - 20, 2);
     print_standart<rational>(Expression<rational>(2.6) + Expression<rational>(11), {}, 2.6 + 11, 3);
 
-    print_standart<complex>(Expression<complex>(complex(1) - Expression<complex>(complex(3))), {},
+    print_standart<complex>(Expression<complex>(complex(1)) - Expression<complex>(complex(3)), {},
                             complex(1) - complex(3), 4);
     print_standart<complex>(Expression<complex>(complex(-1)) + Expression<complex>(complex(11)), {},
                             complex(-1) + complex(11), 5);
@@ -51,7 +51,7 @@ void test_multiplicating_dividing() {
     print_standart<rational>(Expression<rational>(-1) / Expression<rational>(20), {}, (double) -1 / 20, 2);
     print_standart<rational>(Expression<rational>(2.6) * Expression<rational>(11), {}, 2.6 * 11, 3);
 
-    print_standart<complex>(Expression<complex>(complex(1) * Expression<complex>(complex(3))), {},
+    print_standart<complex>(Expression<complex>(complex(1)) * Expression<complex>(complex(3)), {},
                             complex(1) * complex(3), 4);
     print_standart<complex>(Expression<complex>(complex(-1)) / Expression<complex>(complex(11)), {},
                             complex(-1) / complex(11), 5);
@@ -68,7 +68,7 @@ void test_power() {
     print_standart<rational>(Expression<rational>(-1) ^ Expression<rational>(20), {}, std::pow((double) -1, 20), 2);
     print_standart<rational>(Expression<rational>(2.6) ^ Expression<rational>(11), {}, std::pow(2.6, 11), 3);
 
-    print_standart<complex>(Expression<complex>(complex(1) ^ Expression<complex>(complex(3))), {},
+    print_standart<complex>(Expression<complex>(complex(1)) ^ Expression<complex>(complex(3)), {},
                             std::pow(complex(1), complex(3)), 4);
     print_standart<complex>(Expression<complex>(complex(-1)) ^ Expression<complex>(complex(11)), {},
                             std::pow(complex(-1), complex(11)), 5);
@@ -81,15 +81,15 @@ void test_power() {
 void test_sin_cos_ln_exp() {
     std::cout << "=======================================================\n";
     std::cout << "testing sin cos ln exp\n";
-    print_standart<rational>(sin(Expression<rational>(1)), {}, std::sin(1), 1);
-    print_standart<rational>(cos(Expression<rational>(-1)), {}, std::cos(-1), 2);
-    print_standart<rational>(ln(Expression<rational>(2.6)), {}, std::log(2.6), 3);
-    print_standart<rational>(exp(Expression<rational>(2.6)), {}, std::exp(2.6), 4);
+    print_standart<rational>(Expression<rational>(1).sin(), {}, std::sin(1), 1);
+    print_standart<rational>(Expression<rational>(-1).cos(), {}, std::cos(-1), 2);
+    print_standart<rational>(Expression<rational>(2.6).ln(), {}, std::log(2.6), 3);
+    print_standart<rational>(Expression<rational>(2.6).exp(), {}, std::exp(2.6), 4);
 
-    print_standart<complex>(sin(Expression<complex>(complex(1))), {}, std::sin(complex(1)), 5);
-    print_standart<complex>(cos(Expression<complex>(complex(-1))), {}, std::cos(complex(-1)), 6);
-    print_standart<complex>(ln(Expression<complex>(complex(2.6, 0))), {}, std::log(complex(2.6, 0)), 7);
-    print_standart<complex>(exp(Expression<complex>(complex(3.1, 11))), {}, std::exp(complex(3.1, 11)), 8);
+    print_standart<complex>(Expression<complex>(complex(1)).sin(), {}, std::sin(complex(1)), 5);
+    print_standart<complex>(Expression<complex>(complex(-1)).cos(), {}, std::cos(complex(-1)), 6);
+    print_standart<complex>(Expression<complex>(complex(2.6, 0)).ln(), {}, std::log(complex(2.6, 0)), 7);
+    print_standart<complex>(Expression<complex>(complex(3.1, 11)).exp(), {}, std::exp(complex(3.1, 11)), 8);
     std::cout << "///////////////////////////////////////////////////////\n";
     return;
 }
@@ -148,7 +148,8 @@ void test_dif() {
     print_standart<rational>(Expression<rational>("y * x").dif("x"), {arg2}, 2, 3);
 
     std::map<std::string, complex> c_arg1 = {{"x", complex(2, 5)}};
-    std::map<std::string, complex> c_arg2 = {{"x", complex(2, 5)}, {"y", complex(-5.1, 2.5)}};
+    std::map<std::string, complex> c_arg2 = {{"x", complex(2, 5)},
+                                             {"y", complex(-5.1, 2.5)}};
     print_standart<complex>(Expression<complex>("x ^ 3").dif("x"), c_arg1,
                             complex(3, 0) * std::pow(complex(2, 5), 2), 4);
     print_standart<complex>(Expression<complex>("ln(x)").dif("x"), c_arg1,
